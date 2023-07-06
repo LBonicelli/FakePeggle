@@ -1,20 +1,35 @@
-package com.bonicelli.game;
+package com.bonicelli.game.physics;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
+/**
+ * PhysicsManager
+ * create the physics world and the physics bodies
+ */
 public class PhysicsManager {
-    protected final float deltaAngle = 33.185f;
-    protected World world;
-    protected CollisionManager collisionManager;
+    public final float deltaAngle = 33.185f;
+    public World world;
+    public CollisionManager collisionManager;
 
     public PhysicsManager() {
-        setWorld(new World(new Vector2(0, -100f), true));
+        //create a new world follow the specifics
+        setWorld(new World(new Vector2(0, -94f), true));
         collisionManager = new CollisionManager();
+        //set my collisionManager as contact listener of the world
         getWorld().setContactListener(collisionManager);
         getWorld().setContinuousPhysics(true);
     }
-    public FixtureDef createFixture (Shape shape, short category) {
+
+    /**
+     * create general fixture for every piece in the game board
+     *
+     * @param shape of the body
+     * @param category of the body
+     *
+     * @return the final fixture to be associated with the body
+     */
+    public FixtureDef createFixture(Shape shape, short category) {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 1f;
@@ -24,6 +39,18 @@ public class PhysicsManager {
 
         return fixtureDef;
     }
+
+    /**
+     * create the body for circle sprite, so circlePeg and Ball
+     *
+     * @param x position
+     * @param y position
+     * @param radius of the ball's sprite
+     * @param category of the sprite
+     * @param type od the body (Dynamic or Static)
+     *
+     * @return the final body
+     */
     public Body createBodyCircle(float x, float y, float radius, short category, BodyDef.BodyType type) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = type;
@@ -43,14 +70,25 @@ public class PhysicsManager {
         return body;
     }
 
-    public Body createBodyRec(float x, float y, float width, float height, float rotation, short category) {
+    /**
+     * create the body for the rectangle sprite
+     *
+     * @param x position
+     * @param y position
+     * @param width of the sprite
+     * @param height of the sprite
+     * @param rotation of the sprite
+     *
+     * @return the final body
+     */
+    public Body createBodyRec(float x, float y, float width, float height, float rotation) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
 
-        double diagonal = Math.sqrt(height*height + width*width) / 2;
+        double diagonal = Math.sqrt(height * height + width * width) / 2;
 
-        x += (float)(Math.cos(Math.toRadians(rotation + deltaAngle)) * diagonal);
-        y -= (float)(Math.sin(Math.toRadians(rotation + deltaAngle)) * diagonal);
+        x += (float) (Math.cos(Math.toRadians(rotation + deltaAngle)) * diagonal);
+        y -= (float) (Math.sin(Math.toRadians(rotation + deltaAngle)) * diagonal);
         bodyDef.position.set(x - 12, y + 6);
 
         Body body = world.createBody(bodyDef);
@@ -58,7 +96,7 @@ public class PhysicsManager {
         PolygonShape polygonShape = new PolygonShape();
         polygonShape.setAsBox(width / 2f, height / 2f, new Vector2(width / 2f, height / 2f), (float) Math.toRadians(360 - rotation));
 
-        FixtureDef fixtureDef = createFixture(polygonShape, category);
+        FixtureDef fixtureDef = createFixture(polygonShape, CollisionCategories.RECTANGLE_BODY);
 
         body.createFixture(fixtureDef);
         polygonShape.dispose();
@@ -66,7 +104,16 @@ public class PhysicsManager {
         return body;
     }
 
-    public void createBodyWall(float x, float y, float width, float height, float rotation, short category) {
+    /**
+     * create the body for the walls
+     *
+     * @param x position
+     * @param y position
+     * @param width get from the camera dimensions
+     * @param height get from the camera dimensions
+     * @param rotation always 0
+     */
+    public void createBodyWall(float x, float y, float width, float height, float rotation) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
 
@@ -80,7 +127,7 @@ public class PhysicsManager {
         PolygonShape polygonShape = new PolygonShape();
         polygonShape.setAsBox(hw, hh, new Vector2(hw, hh), (float) Math.toRadians(360 - rotation));
 
-        FixtureDef fixtureDef = createFixture(polygonShape, category);
+        FixtureDef fixtureDef = createFixture(polygonShape, CollisionCategories.WALL);
 
         body.createFixture(fixtureDef);
         polygonShape.dispose();

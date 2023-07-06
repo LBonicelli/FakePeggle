@@ -8,23 +8,28 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.bonicelli.game.dynamicSprite.Ball;
+import com.bonicelli.game.peg.CirclePeg;
+import com.bonicelli.game.peg.Peg;
+import com.bonicelli.game.peg.RectanglePeg;
+import com.bonicelli.game.physics.PhysicsManager;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class GameMap {
-    protected final float ORANGE_PERCENTAGE = 0.4f; /* percentage of orange pegs in the map */
-    protected final Texture BLUE_BALL = new Texture(Gdx.files.internal("image/blueBall.png"));
-    protected final Texture BLUE_REC = new Texture(Gdx.files.internal("image/blueRec.png"));
-    protected final Texture OR_BALL = new Texture(Gdx.files.internal("image/orangeBall.png"));
-    protected final Texture O_REC = new Texture(Gdx.files.internal("image/orangeRec.png"));
-    protected final Texture UPPER_CIRCLE = new Texture(Gdx.files.internal("image/circleImage.png"));
-    protected Sprite upperCircle;
-    protected HashMap<Body, CirclePeg> circlePegs;
-    protected HashMap<Body, RectanglePeg> rectanglePegs;
-    protected HashMap<Body, Peg> hitPeg;
-    protected int numberOrange; /* exact integer number of orange Pegs */
+    public final float ORANGE_PERCENTAGE = 0.4f; /* percentage of orange pegs in the map */
+    public final Texture BLUE_BALL = new Texture(Gdx.files.internal("image/blueBall.png"));
+    public final Texture BLUE_REC = new Texture(Gdx.files.internal("image/blueRec.png"));
+    public final Texture OR_BALL = new Texture(Gdx.files.internal("image/orangeBall.png"));
+    public final Texture O_REC = new Texture(Gdx.files.internal("image/orangeRec.png"));
+    public final Texture UPPER_CIRCLE = new Texture(Gdx.files.internal("image/circleImage.png"));
+    public Sprite upperCircle;
+    public HashMap<Body, CirclePeg> circlePegs;
+    public HashMap<Body, RectanglePeg> rectanglePegs;
+    public HashMap<Body, Peg> hitPeg;
+    public int numberOrange; /* exact integer number of orange Pegs */
 
     /**
      * Create the map with the appropriate Design and Texture
@@ -59,8 +64,8 @@ public class GameMap {
 
         upperCircle = new Sprite(UPPER_CIRCLE);
         //creation of the right and left wall
-        physicsManager.createBodyWall(0, 0, 1, camera.viewportHeight, 0, CollisionCategories.WALL);
-        physicsManager.createBodyWall(camera.viewportWidth, 0, 1, camera.viewportHeight, 0, CollisionCategories.WALL);
+        physicsManager.createBodyWall(0, 0, 1, camera.viewportHeight, 0);
+        physicsManager.createBodyWall(camera.viewportWidth, 0, 1, camera.viewportHeight, 0);
     }
 
     /**
@@ -84,6 +89,7 @@ public class GameMap {
         totalMap.putAll(rectanglePegs);
         return totalMap;
     }
+
     public void endOfThrow(Ball ball, PhysicsManager physicsManager) {
         //destroy all the useless bodies (hit and the current ball)
         //move all the useless sprites

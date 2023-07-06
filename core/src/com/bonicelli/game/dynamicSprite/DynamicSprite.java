@@ -1,4 +1,4 @@
-package com.bonicelli.game;
+package com.bonicelli.game.dynamicSprite;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -7,25 +7,31 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * DynamicSprite
+ * represents generically a moving sprite in the map
+ */
 public abstract class DynamicSprite extends Sprite {
     Circle circle;
-    protected TextureRegion textureRegion;
+    public TextureRegion textureRegion;
 
     /**
      * Cannon constructor
+     *
      * @param image Texture of the Sprite
      * @param cameraWidth X position of the circle
      * @param cameraHeight Y position for the circle
      */
     public DynamicSprite(Texture image, float cameraWidth, float cameraHeight) {
         super(image);
-        setCircle(cameraWidth/ 2f, cameraHeight - 50, 35);
+        setCircle(cameraWidth / 2f, cameraHeight - 50, 35);
         setCenter(getCircle().x, getCircle().y - getCircle().radius);
         setOrigin(getWidth() / 2f, getHeight());
     }
 
     /**
      * Ball constructor
+     *
      * @param image Texture of the Sprite
      * @param cannon the ball set its position based on the position of the cannon
      */
@@ -36,16 +42,12 @@ public abstract class DynamicSprite extends Sprite {
         setOrigin(getWidth() / 2f, getHeight());
     }
 
-    public Circle getCircle() {
-        return circle;
-    }
-
-    public void setCircle(float x, float y, float radius) {
-        this.circle = new Circle(x, y,radius);
+    public DynamicSprite(Texture texture) {
+        super(texture);
     }
 
     /**
-     * Draw the actor on the game board
+     * Draw the sprite on the game board
      *
      * @param batch current open batch
      * @param alpha The parent alpha, to be multiplied with this actor's alpha, allowing the parent's alpha to affect all
@@ -57,20 +59,24 @@ public abstract class DynamicSprite extends Sprite {
         batch.draw(textureRegion, getX(), getY(), this.getOriginX(), this.getOriginY(), textureRegion.getRegionWidth(), textureRegion.getRegionHeight(), 1, 1, 360 - getRotation());
     }
 
-    public Vector2 genPos(Vector2 lineStart) {
-        Vector2 lineEnd = new Vector2(getCircle().x, getCircle().y);
-        return getCircleLineIntersectionPoint(lineStart, lineEnd);
-    }
-
-    private Vector2 getCircleLineIntersectionPoint(Vector2 pointA, Vector2 pointB) {
+    /**
+     * Generates the new position of the cannon, and consequently of the ball
+     *
+     * @param pointA, first point of the line, represents the cursor position
+     * @param pointB, second point of the line, represent the center of the circle
+     * @param circle, the circle associated with di DynamicSprite
+     *
+     * @return the nearest intersection point to the cursor
+     */
+    public Vector2 getCircleLineIntersectionPoint(Vector2 pointA, Vector2 pointB, Circle circle) {
         float baX = pointB.x - pointA.x;
         float baY = pointB.y - pointA.y;
-        float caX = getCircle().x - pointA.x;
-        float caY = getCircle().y - pointA.y;
+        float caX = circle.x - pointA.x;
+        float caY = circle.y - pointA.y;
 
         float a = baX * baX + baY * baY;
         float bBy2 = baX * caX + baY * caY;
-        float c = caX * caX + caY * caY - getCircle().radius * getCircle().radius;
+        float c = caX * caX + caY * caY - circle.radius * circle.radius;
 
         float pBy2 = bBy2 / a;
         float q = c / a;
@@ -90,9 +96,17 @@ public abstract class DynamicSprite extends Sprite {
         }
         Vector2 p2 = new Vector2(pointA.x - baX * abScalingFactor2, pointA.y - baY * abScalingFactor2);
 
-        p1.set(p1.x , Math.min(p1.y , getCircle().y));
-        p2.set(p2.x , Math.min(p2.y , getCircle().y));
+        p1.set(p1.x, Math.min(p1.y, circle.y));
+        p2.set(p2.x, Math.min(p2.y, circle.y));
 
         return (pointA.dst(p1) < pointA.dst(p2)) ? p1 : p2;
+    }
+
+    public Circle getCircle() {
+        return circle;
+    }
+
+    public void setCircle(float x, float y, float radius) {
+        this.circle = new Circle(x, y, radius);
     }
 }

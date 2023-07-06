@@ -9,17 +9,17 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class ScoreBoard {
-    protected Integer orangeCount = 0;
-    protected Integer ballsCount = 9;
-    protected BitmapFont remainingBall;
-    protected BitmapFont orangeHit;
-    protected BitmapFont endFont;
-    protected Sprite ballImage = new Sprite(new Texture(Gdx.files.internal("image/ballSprite.png")));
-    protected Sprite orangeImage = new Sprite(new Texture(Gdx.files.internal("image/orangeBall.png")));
-    protected boolean isWin = false;
-    protected boolean isLose = false;
-    protected boolean isPlayed = true;
-    protected GameMap gameMap;
+    public Integer orangeCount = 0;
+    public Integer ballsCount = 9;
+    public BitmapFont remainingBall;
+    public BitmapFont orangeHit;
+    public BitmapFont endFont;
+    public Sprite ballImage = new Sprite(new Texture(Gdx.files.internal("image/ballSprite.png")));
+    public Sprite orangeImage = new Sprite(new Texture(Gdx.files.internal("image/orangeBall.png")));
+    public boolean isWin = false;
+    public boolean isLose = false;
+    public boolean isPlayed = true;
+    public GameMap gameMap;
 
     public ScoreBoard() {
         remainingBall = new BitmapFont();
@@ -32,13 +32,11 @@ public class ScoreBoard {
     public void draw(Batch batch, Camera camera) {
         ballImage.setPosition(camera.viewportWidth / 4 - 30, camera.viewportHeight - 38);
         ballImage.draw(batch);
-        remainingBall.draw(batch, ballsCount.toString(), camera.viewportWidth / 4 - 40,
-                camera.viewportHeight - (float) 4 * camera.viewportHeight / 100);
+        remainingBall.draw(batch, ballsCount.toString(), camera.viewportWidth / 4 - 40, camera.viewportHeight - (float) 4 * camera.viewportHeight / 100);
 
         orangeImage.setPosition(camera.viewportWidth / 4 + 30, camera.viewportHeight - 36);
         orangeImage.draw(batch);
-        orangeHit.draw(batch, orangeCount.toString() + "/" + gameMap.numberOrange, camera.viewportWidth / 4 - 5,
-                camera.viewportHeight - (float) 4 * camera.viewportHeight / 100);
+        orangeHit.draw(batch, orangeCount.toString() + "/" + gameMap.numberOrange, camera.viewportWidth / 4 - 5, camera.viewportHeight - (float) 4 * camera.viewportHeight / 100);
     }
 
     public void drawResult(Batch batch, Camera camera) {
@@ -51,7 +49,7 @@ public class ScoreBoard {
     }
 
     public void playSound(String soundString) {
-        if(isPlayed) {
+        if (isPlayed) {
             isPlayed = false;
             Sound resultSound = Gdx.audio.newSound(Gdx.files.internal(soundString));
             resultSound.play();
