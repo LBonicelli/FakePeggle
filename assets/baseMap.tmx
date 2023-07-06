@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="40" height="54" tilewidth="10" tileheight="10" infinite="0" nextlayerid="5" nextobjectid="966">
+ <imagelayer id="2" name="background" offsetx="0.00497155" offsety="0.00106535">
+  <image source="sky.png" width="408" height="544"/>
+ </imagelayer>
+ <objectgroup id="3" name="pegs">
+  <object id="782" type="RectanglePeg" x="29.8532" y="205.967" width="23" height="15" rotation="44.679"/>
+  <object id="904" type="RectanglePeg" x="46.6667" y="222.5" width="23" height="15" rotation="44.679"/>
+  <object id="909" type="RectanglePeg" x="41.7599" y="263.734" width="23" height="15" rotation="44.679"/>
+  <object id="910" type="RectanglePeg" x="58.5734" y="280.267" width="23" height="15" rotation="44.679"/>
+  <object id="911" type="RectanglePeg" x="60.7599" y="324.234" width="23" height="15" rotation="44.679"/>
+  <object id="912" type="RectanglePeg" x="77.5734" y="340.767" width="23" height="15" rotation="44.679"/>
+  <object id="913" type="RectanglePeg" x="306.093" y="358.239" width="23" height="15" rotation="-44.679"/>
+  <object id="914" type="RectanglePeg" x="322.906" y="341.706" width="23" height="15" rotation="-44.679"/>
+  <object id="915" type="RectanglePeg" x="326" y="300.472" width="23" height="15" rotation="-44.679"/>
+  <object id="916" type="RectanglePeg" x="342.813" y="283.939" width="23" height="15" rotation="-44.679"/>
+  <object id="917" type="RectanglePeg" x="335.666" y="241.972" width="23" height="15" rotation="-44.679"/>
+  <object id="918" type="RectanglePeg" x="352.48" y="225.439" width="23" height="15" rotation="-44.679"/>
+  <object id="919" type="RectanglePeg" x="178.262" y="317.933" width="23" height="15" rotation="151.123"/>
+  <object id="920" type="RectanglePeg" x="169.783" y="357.905" width="23" height="15" rotation="144.047"/>
+  <object id="921" type="RectanglePeg" x="247.966" y="372.777" width="23" height="15" rotation="-144.047"/>
+  <object id="922" type="RectanglePeg" x="238.256" y="329.274" width="23" height="15" rotation="-151.123"/>
+  <object id="923" type="RectanglePeg" x="188.117" y="278.193" width="23" height="15" rotation="161.11"/>
+  <object id="924" type="RectanglePeg" x="230.31" y="286.28" width="23" height="15" rotation="-161.11"/>
+  <object id="925" type="CirclePeg" x="32.6667" y="155.333" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="926" type="CirclePeg" x="72" y="190" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="927" type="CirclePeg" x="123.333" y="224.667" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="929" type="CirclePeg" x="248.667" y="227.333" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="930" type="CirclePeg" x="304.667" y="203.333" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="931" type="CirclePeg" x="345.333" y="178" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="933" type="CirclePeg" x="36.6666" y="113.334" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="934" type="CirclePeg" x="82.6667" y="144" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="935" type="CirclePeg" x="117.333" y="170" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="936" type="CirclePeg" x="162" y="184" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="937" type="CirclePeg" x="216" y="184" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="938" type="CirclePeg" x="268" y="169.333" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="939" type="CirclePeg" x="309.333" y="147.5" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="940" type="CirclePeg" x="351" y="119" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="941" type="CirclePeg" x="80.5" y="240.833" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="942" type="CirclePeg" x="190.833" y="217.833" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="943" type="CirclePeg" x="102.167" y="284.5" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="944" type="CirclePeg" x="189.5" y="329" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="946" type="CirclePeg" x="299.333" y="249.833" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="947" type="CirclePeg" x="267.333" y="285" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="948" type="CirclePeg" x="275.167" y="330.167" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="949" type="CirclePeg" x="109.5" y="329.5" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="951" type="CirclePeg" x="92.6667" y="105.333" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="952" type="CirclePeg" x="146.667" y="130.667" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="953" type="CirclePeg" x="191.333" y="146" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="954" type="CirclePeg" x="245.333" y="131.333" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="955" type="CirclePeg" x="293.334" y="106.667" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="956" type="CirclePeg" x="110.667" y="372" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="957" type="CirclePeg" x="75.3333" y="401.333" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="958" type="CirclePeg" x="144" y="400.667" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="959" type="CirclePeg" x="190.667" y="373.333" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="960" type="CirclePeg" x="191.333" y="421.333" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="962" type="CirclePeg" x="236.667" y="404" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="963" type="CirclePeg" x="276" y="378" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="964" type="CirclePeg" x="319.333" y="394.667" width="16" height="16">
+   <ellipse/>
+  </object>
+ </objectgroup>
+</map>
