@@ -19,7 +19,13 @@ import com.bonicelli.game.dynamicSprite.Ball;
 import com.bonicelli.game.dynamicSprite.Cannon;
 import com.bonicelli.game.dynamicSprite.Chest;
 import com.bonicelli.game.physics.PhysicsManager;
+import com.bonicelli.game.sceneUtilities.GameMap;
+import com.bonicelli.game.sceneUtilities.ScoreBoard;
 
+/**
+ * GameScreen
+ * the game's single screen, where everything that happens is displayed
+ */
 public class GameScreen implements Screen {
     final FakePeggle game;
     final public Music backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("sound/backgroundMusic.mp3"));
@@ -29,12 +35,13 @@ public class GameScreen implements Screen {
     public MapLayer objectLayer;
     public PhysicsManager physicsManager;
     public GameMap gameMap;
+    public ScoreBoard scoreBoard;
     public Cannon cannon;
+
     public Ball ball;
     public Chest chest;
     public SpriteBatch batch;
     public ShapeRenderer shapeRenderer;
-    public ScoreBoard scoreBoard;
 
     public GameScreen(FakePeggle game) {
         this.game = game;
@@ -52,13 +59,14 @@ public class GameScreen implements Screen {
 
         //create all the useful item in the game map
         gameMap = new GameMap(objectLayer, physicsManager, camera);
+        scoreBoard = new ScoreBoard();
 
         cannon = new Cannon(new Texture(Gdx.files.internal("image/cannonBall.png")), camera);
         ball = new Ball(new Texture(Gdx.files.internal("image/ballSprite.png")), cannon);
         chest = new Chest();
         gameMap.upperCircle.setCenter(cannon.getCircle().x, cannon.getCircle().y);
-        scoreBoard = new ScoreBoard();
 
+        //instance batch and shapeRender for the rendering of the sprite
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
 
@@ -72,9 +80,17 @@ public class GameScreen implements Screen {
         backgroundMusic.setLooping(true);
     }
 
+    /**
+     * Renders the game world and updates the screen.
+     * This method is called continuously by the game loop.
+     * it handles the rendering of game objects, animations,
+     * and any other visual elements on the screen.
+     *
+     * @param delta The time in seconds since the last render.
+     */
     @Override
     public void render(float delta) {
-        //update the mouse's position
+        //update the mouse position
         Vector3 newPos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
         //update the world on the base of the new position
         update(delta, newPos);
@@ -85,9 +101,11 @@ public class GameScreen implements Screen {
         gameMap.upperCircle.draw(batch);
 
         cannon.draw(batch, 1);
-        //if the cannon has shot, the ball is drawn at the position of the body
+        //if the cannon has shot, the ball is drawn in the position of the body associated with the ball
         if (cannon.isFired()) {
-            ball.getBody().applyForceToCenter(ball.getBody().getLinearVelocity().x * 2, ball.getBody().getLinearVelocity().y * 1.5f, true);
+            //apply a little force every render iteration, giving the ball more speed
+            ball.getBody().applyForceToCenter(ball.getBody().getLinearVelocity().x * 1.5f,
+                    ball.getBody().getLinearVelocity().y * 1.5f, true);
             ball.setCenter(ball.getBody().getPosition().x, ball.getBody().getPosition().y);
             ball.draw(batch, 1);
         }
@@ -103,7 +121,13 @@ public class GameScreen implements Screen {
         }
     }
 
-    public void update(float delta, Vector3 newPos) {
+    /**
+     * update the game screen and call pre or after shot method, based on the status
+     *
+     * @param ignoredDelta The time in seconds since the last render.
+     * @param newPos the updated mouse position
+     */
+    public void update(float ignoredDelta, Vector3 newPos) {
         // clear the screen
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -125,35 +149,56 @@ public class GameScreen implements Screen {
         if (!scoreBoard.checkScore()) {
             //status: the cannon hasn't shot
             if (!cannon.isFired()) {
-                cannon.updatePosition(new Vector2(newPos.x, newPos.y));
-                ball.updatePosition(new Vector2(newPos.x, newPos.y));
-                //when the left button's pressed, the cannon shoots
-                if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-                    cannon.setFiredTrue();
-                    ball.applyImpulse(physicsManager);
-                    scoreBoard.ballsCount--;
-                }
+                preShot(newPos.x, newPos.y);
             }
-
             //status: the cannon has shot
-            if (cannon.isFired()) {
-                chest.isGoal(ball);
-                //handle the end of a throw
-                if (chest.goalCheck || ball.getY() <= -ball.getHeight()) {
-                    cannon.setFiredFalse();
-                    gameMap.endOfThrow(ball, physicsManager);
-                    //if the ball hit the chest it doesn't decrease the balls count
-                    if (chest.goalCheck) {
-                        scoreBoard.ballsCount++;
-                        chest.Sound();
-                    }
-
-                    scoreBoard.score();
-                }
+            else {
+                afterShot();
             }
         }
     }
 
+    /**
+     * in pre shot update the position of the cannon based on the cursor position
+     * handle the left button click, so the moment of the shot
+     *
+     * @param cursorX, mouse x position
+     * @param cursorY, mouse y position
+     */
+    private void preShot(float cursorX, float cursorY) {
+        cannon.updatePosition(new Vector2(cursorX, cursorY));
+        ball.updatePosition(new Vector2(cursorX, cursorY));
+        //when the left button's pressed, the cannon shoots
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
+            cannon.setFiredTrue();
+            ball.applyImpulse(physicsManager);
+            scoreBoard.ballsCount--;
+        }
+    }
+
+    /**
+     * in the after shot checks if the ball's entered the chest
+     * handle the end of the throw and reset to the initial status
+     */
+    private void afterShot() {
+        chest.isGoal(ball);
+        //handle the end of a throw (ball in the chest or out of the map)
+        if (chest.goalCheck || ball.getY() <= -ball.getHeight()) {
+            cannon.setFiredFalse();
+            gameMap.endOfThrow(ball, physicsManager);
+            //if the ball hit the chest add a ball
+            if (chest.goalCheck) {
+                scoreBoard.ballsCount++;
+                chest.Sound();
+            }
+
+            scoreBoard.score();
+        }
+    }
+
+    /**
+     * cover the screen with a matte black layer and draw the final result
+     */
     private void endGame() {
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
@@ -195,6 +240,11 @@ public class GameScreen implements Screen {
 
     }
 
+    /**
+     * Deallocates the resources used by this object.
+     * This method should be called when the object is no longer needed
+     * to free up system resources and prevent memory leaks
+     */
     public void dispose() {
         tiledMap.dispose();
         tiledMapRenderer.dispose();
@@ -204,6 +254,10 @@ public class GameScreen implements Screen {
         scoreBoard.orangeHit.dispose();
         backgroundMusic.dispose();
         shapeRenderer.dispose();
+        cannon.getTexture().dispose();
+        ball.getTexture().dispose();
+        chest.getTexture().dispose();
+        gameMap.UPPER_CIRCLE.dispose();
     }
 }
 

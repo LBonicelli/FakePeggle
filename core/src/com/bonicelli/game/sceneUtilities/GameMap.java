@@ -1,4 +1,4 @@
-package com.bonicelli.game;
+package com.bonicelli.game.sceneUtilities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
@@ -18,6 +18,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * GameMap
+ * generate the game map(so the disposition of the pegs) based on the map passed by Tiled
+ * moreover handle the random position of the orange pieces
+ */
 public class GameMap {
     public final float ORANGE_PERCENTAGE = 0.4f; /* percentage of orange pegs in the map */
     public final Texture BLUE_BALL = new Texture(Gdx.files.internal("image/blueBall.png"));
@@ -56,14 +61,14 @@ public class GameMap {
                 rectanglePegs.put(rectanglePeg.getBody(), rectanglePeg);
             }
         }
-
+        //set the type of the pegs
         circlePegs.forEach((b, c) -> c.setType("B"));
         rectanglePegs.forEach((b, r) -> r.setType("B"));
 
         setOrangePeg(circlePegs, rectanglePegs);
 
         upperCircle = new Sprite(UPPER_CIRCLE);
-        //creation of the right and left wall
+        //creation of the right and left wall bodies
         physicsManager.createBodyWall(0, 0, 1, camera.viewportHeight, 0);
         physicsManager.createBodyWall(camera.viewportWidth, 0, 1, camera.viewportHeight, 0);
     }
@@ -84,12 +89,25 @@ public class GameMap {
         totalPeg.stream().limit(numberOrange).filter(p -> p.getTexture() == BLUE_REC).forEach(p -> p.setTexture(O_REC));
     }
 
+    /**
+     * create a map with all the pegs in the map
+     * use in the collision manager
+     *
+     * @return the total map
+     */
     public Map<Body, Peg> getTotalMap() {
         HashMap<Body, Peg> totalMap = new HashMap<>(circlePegs);
         totalMap.putAll(rectanglePegs);
         return totalMap;
     }
 
+    /**
+     * handle the operations at the end of each throw
+     * destroy all the bodies that have been hitten and the active ball body, move the sprites
+     *
+     * @param ball the active game ball
+     * @param physicsManager current physics manage who contain the World instance
+     */
     public void endOfThrow(Ball ball, PhysicsManager physicsManager) {
         //destroy all the useless bodies (hit and the current ball)
         //move all the useless sprites
@@ -97,6 +115,7 @@ public class GameMap {
         hitPeg.forEach((b, p) -> {
             physicsManager.getWorld().destroyBody(b);
             p.setPosition(-100, -100);
+            p.getTexture().dispose();
         });
         //clear the list of hit peg
         hitPeg.clear();

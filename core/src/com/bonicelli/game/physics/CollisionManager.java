@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import com.bonicelli.game.GameMap;
-import com.bonicelli.game.ScoreBoard;
+import com.bonicelli.game.sceneUtilities.GameMap;
+import com.bonicelli.game.sceneUtilities.ScoreBoard;
 import com.bonicelli.game.peg.Peg;
 
 /**
