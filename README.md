@@ -10,7 +10,7 @@
 >Note: The project was concerned only as desktop application.  
 
 ## Rules
-* For this project I established some primitive rules from the original games
+* I established some primitive rules from the original games
   
 * **Win Condition**:  
   the main goal of the game is to hit all the orange pegs with the white balls
