@@ -1,6 +1,5 @@
 # FakePeggle
 
-## Introduction
 * FakePeggle is a project that aims to faithfully replicate the game **Peggle**, described on the internet as a *casual puzzle video games*.  
 * Basically there is a 2D map filled with blue and orange pieces (circle and rectangle) called in the game **pegs**.  
 * A **cannon** placed high-center fires a **ball** that fall and hit the pegs.
