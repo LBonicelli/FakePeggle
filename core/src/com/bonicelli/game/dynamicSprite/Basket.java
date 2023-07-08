@@ -6,25 +6,25 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
 
 /**
- * Chest
+ * Basket
  * sprite located in the bottom area of the map
  * it moves continuously on the X axis
  * handle a "goal" of the ball
  */
-public class Chest extends DynamicSprite {
+public class Basket extends DynamicSprite {
     final public Sound goalSound = Gdx.audio.newSound(Gdx.files.internal("sound/goal.mp3"));
     public boolean directionLeft = false;
     public boolean goalCheck;
     public float x;
 
-    public Chest() {
-        super(new Texture(Gdx.files.internal("image/chest.png")));
+    public Basket() {
+        super(new Texture(Gdx.files.internal("image/basket.png")));
         setSize(getTexture().getWidth(), getTexture().getHeight());
         setPosition(0, 0);
     }
 
     /**
-     * update the position of the chest
+     * update the position of the basket
      *
      * @param camera, the position is based on the dimensions of the camera
      */
@@ -41,7 +41,7 @@ public class Chest extends DynamicSprite {
     }
 
     /**
-     * checks if the ball is entered in the chest (touch the bounding rectangle of the sprite)
+     * checks if the ball is entered in the basket (touch the bounding rectangle of the sprite)
      *
      * @param ball, the ball in game
      */

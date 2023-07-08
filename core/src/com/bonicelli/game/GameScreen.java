@@ -16,8 +16,8 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.bonicelli.game.dynamicSprite.Ball;
+import com.bonicelli.game.dynamicSprite.Basket;
 import com.bonicelli.game.dynamicSprite.Cannon;
-import com.bonicelli.game.dynamicSprite.Chest;
 import com.bonicelli.game.physics.PhysicsManager;
 import com.bonicelli.game.sceneUtilities.GameMap;
 import com.bonicelli.game.sceneUtilities.ScoreBoard;
@@ -39,7 +39,7 @@ public class GameScreen implements Screen {
     public Cannon cannon;
 
     public Ball ball;
-    public Chest chest;
+    public Basket basket;
     public SpriteBatch batch;
     public ShapeRenderer shapeRenderer;
 
@@ -63,7 +63,7 @@ public class GameScreen implements Screen {
 
         cannon = new Cannon(new Texture(Gdx.files.internal("image/cannonBall.png")), camera);
         ball = new Ball(new Texture(Gdx.files.internal("image/ballSprite.png")), cannon);
-        chest = new Chest();
+        basket = new Basket();
         gameMap.upperCircle.setCenter(cannon.getCircle().x, cannon.getCircle().y);
 
         //instance batch and shapeRender for the rendering of the sprite
@@ -104,13 +104,12 @@ public class GameScreen implements Screen {
         //if the cannon has shot, the ball is drawn in the position of the body associated with the ball
         if (cannon.isFired()) {
             //apply a little force every render iteration, giving the ball more speed
-            ball.getBody().applyForceToCenter(ball.getBody().getLinearVelocity().x * 1.5f,
-                    ball.getBody().getLinearVelocity().y * 1.5f, true);
+            ball.getBody().applyForceToCenter(ball.getBody().getLinearVelocity().x * 1.5f, ball.getBody().getLinearVelocity().y * 1.5f, true);
             ball.setCenter(ball.getBody().getPosition().x, ball.getBody().getPosition().y);
             ball.draw(batch, 1);
         }
 
-        chest.draw(batch, 1);
+        basket.draw(batch, 1);
         scoreBoard.draw(batch, camera);
 
         batch.end();
@@ -143,7 +142,7 @@ public class GameScreen implements Screen {
         //unproject of the given new position
         camera.unproject(newPos);
 
-        chest.updatePosition(camera);
+        basket.updatePosition(camera);
 
         //check that game's not over yet
         if (!scoreBoard.checkScore()) {
@@ -177,19 +176,19 @@ public class GameScreen implements Screen {
     }
 
     /**
-     * in the after shot checks if the ball's entered the chest
+     * in the after shot checks if the ball's entered the basket
      * handle the end of the throw and reset to the initial status
      */
     private void afterShot() {
-        chest.isGoal(ball);
-        //handle the end of a throw (ball in the chest or out of the map)
-        if (chest.goalCheck || ball.getY() <= -ball.getHeight()) {
+        basket.isGoal(ball);
+        //handle the end of a throw (ball in the basket or out of the map)
+        if (basket.goalCheck || ball.getY() <= -ball.getHeight()) {
             cannon.setFiredFalse();
             gameMap.endOfThrow(ball, physicsManager);
-            //if the ball hit the chest add a ball
-            if (chest.goalCheck) {
+            //if the ball hit the basket add a ball
+            if (basket.goalCheck) {
                 scoreBoard.ballsCount++;
-                chest.Sound();
+                basket.Sound();
             }
 
             scoreBoard.score();
@@ -256,7 +255,7 @@ public class GameScreen implements Screen {
         shapeRenderer.dispose();
         cannon.getTexture().dispose();
         ball.getTexture().dispose();
-        chest.getTexture().dispose();
+        basket.getTexture().dispose();
         gameMap.UPPER_CIRCLE.dispose();
     }
 }

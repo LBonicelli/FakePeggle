@@ -14,7 +14,7 @@ public class PhysicsManager {
 
     public PhysicsManager() {
         //create a new world follow the specifics
-        setWorld(new World(new Vector2(0, -94f), true));
+        setWorld(new World(new Vector2(0, -104f), true));
         collisionManager = new CollisionManager();
         //set my collisionManager as contact listener of the world
         getWorld().setContactListener(collisionManager);
