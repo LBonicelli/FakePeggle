@@ -25,7 +25,7 @@
 ## Features
 
 * Every game you play the position of the orange pegs is choosen **randomically**  
-* When hit every peg **lights** and disappear at the end of each throw  
+* When it is hit, every peg **lights** and disappear at the end of each throw  
 * Game music, effects sound, Win and Lose screen
 
 ## Game Map Implementation
