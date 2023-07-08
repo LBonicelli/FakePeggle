@@ -10,8 +10,11 @@
 
 ## Rules
 * For this project I established some primitive rules from the original games
-* **Win Condition**: the main goal of the game is to hit all the orange pegs with the white balls
-* **Lose Condition**: the game end if all the available balls have been shot
+  
+* **Win Condition**:  
+  the main goal of the game is to hit all the orange pegs with the white balls
+* **Lose Condition**:  
+  the game end if all the available balls have been shot
 * If the ball hit the chest you gain a bonus ball (+1 on the available ball counter)
 
 ## Screenshots
