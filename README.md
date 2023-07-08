@@ -10,7 +10,7 @@
 ## Game Design
 * Basically there is a 2D map filled with blue and orange pieces (circle and rectangle) called in the game **pegs**.
 * A **cannon** placed high-center fires a **ball** that fall and hit the pegs.
-* A **chest** in the bottom of the board moves horizontally.
+* A **basket** in the bottom of the board moves horizontally.
 * A scoreboard in the high part of the screen keep the count of the **balls left** and **orange pegs hit/total orange number**.
 
 ## Rules
@@ -20,7 +20,7 @@
   the main goal of the game is to hit all the orange pegs with the white balls.
 * **Lose Condition**:  
   the game end if all the available balls have been shot.
-* If the ball hit the chest you gain a bonus ball (+1 on the available ball counter).
+* If the ball hit the basket you gain a bonus ball (+1 on the available ball counter).
 
 ## Screenshots
 
