@@ -20,7 +20,7 @@
 
 ## Screenshots
 
-![gameScreenshot](https://github.com/LBonicelli/FakePeggle/assets/102794088/0620af1f-561b-4bdb-8b4c-671951cc444d)
+![gameScreenshot](https://github.com/LBonicelli/FakePeggle/assets/gameScreenshot.png)
 
 ## Features
 
