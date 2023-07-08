@@ -7,7 +7,7 @@
 
 >Note: The project was concerned only as desktop application.  
 
-## Aspect
+## Game Design
 * Basically there is a 2D map filled with blue and orange pieces (circle and rectangle) called in the game **pegs**.
 * A **cannon** placed high-center fires a **ball** that fall and hit the pegs.
 * A **chest** in the bottom of the board moves horizontally.
