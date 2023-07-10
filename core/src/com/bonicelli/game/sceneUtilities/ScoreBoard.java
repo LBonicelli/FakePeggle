@@ -15,7 +15,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 public class ScoreBoard {
     public Integer orangeCount = 0; //number of hit orange pegs
-    public Integer ballsCount = 8; //remaining game balls
+    public Integer ballsCount = 9; //remaining game balls
     public BitmapFont remainingBall;
     public BitmapFont orangeHit;
     public BitmapFont endFont;
