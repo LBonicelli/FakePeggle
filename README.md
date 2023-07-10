@@ -24,6 +24,7 @@
 
 ## Screenshots
 
+![realPeggle](https://github.com/LBonicelli/FakePeggle/blob/master/assets/realPeggle.jpg)
 ![gameScreenshot](https://github.com/LBonicelli/FakePeggle/blob/master/assets/gameScreenshot.png)
 
 ## Features
