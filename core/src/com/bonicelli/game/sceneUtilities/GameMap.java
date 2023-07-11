@@ -19,17 +19,16 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * GameMap
  * generate the game map(so the disposition of the pegs) based on the map passed by Tiled
  * moreover handle the random position of the orange pieces
  */
 public class GameMap {
     public final float ORANGE_PERCENTAGE = 0.4f; /* percentage of orange pegs in the map */
-    public final Texture BLUE_BALL = new Texture(Gdx.files.internal("image/blueBall.png"));
-    public final Texture BLUE_REC = new Texture(Gdx.files.internal("image/blueRec.png"));
-    public final Texture OR_BALL = new Texture(Gdx.files.internal("image/orangeBall.png"));
-    public final Texture O_REC = new Texture(Gdx.files.internal("image/orangeRec.png"));
-    public final Texture UPPER_CIRCLE = new Texture(Gdx.files.internal("image/circleImage.png"));
+    public final Texture BLUE_BALL = new Texture(Gdx.files.internal("images/blueBall.png"));
+    public final Texture BLUE_REC = new Texture(Gdx.files.internal("images/blueRec.png"));
+    public final Texture OR_BALL = new Texture(Gdx.files.internal("images/orangeBall.png"));
+    public final Texture O_REC = new Texture(Gdx.files.internal("images/orangeRec.png"));
+    public final Texture UPPER_CIRCLE = new Texture(Gdx.files.internal("images/circleImage.png"));
     public Sprite upperCircle;
     public HashMap<Body, CirclePeg> circlePegs;
     public HashMap<Body, RectanglePeg> rectanglePegs;

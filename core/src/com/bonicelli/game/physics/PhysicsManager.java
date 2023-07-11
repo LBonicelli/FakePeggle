@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
 /**
- * PhysicsManager
  * create the physics world and the physics bodies
  */
 public class PhysicsManager {

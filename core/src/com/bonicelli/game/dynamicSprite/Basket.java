@@ -6,19 +6,18 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
 
 /**
- * Basket
  * sprite located in the bottom area of the map
  * it moves continuously on the X axis
  * handle a "goal" of the ball
  */
 public class Basket extends DynamicSprite {
-    final public Sound goalSound = Gdx.audio.newSound(Gdx.files.internal("sound/goal.mp3"));
+    final public Sound goalSound = Gdx.audio.newSound(Gdx.files.internal("sounds/goal.mp3"));
     public boolean directionLeft = false;
     public boolean goalCheck;
     public float x;
 
     public Basket() {
-        super(new Texture(Gdx.files.internal("image/basket.png")));
+        super(new Texture(Gdx.files.internal("images/basket.png")));
         setSize(getTexture().getWidth(), getTexture().getHeight());
         setPosition(0, 0);
     }

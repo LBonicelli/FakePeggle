@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
 /**
- * Peg
  * a peg is every static sprite that have to be hit by the active game ball
  * there are circle and rectangle peg, blue and orange
  * every peg is associated with a physic body

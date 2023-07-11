@@ -9,7 +9,6 @@ import com.bonicelli.game.physics.CollisionCategories;
 import com.bonicelli.game.physics.PhysicsManager;
 
 /**
- * Ball
  * the most important sprite in the map
  * represent an active ball in game
  */

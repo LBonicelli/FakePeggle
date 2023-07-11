@@ -7,14 +7,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * Cannon
  * a sprite which have to move when the cursor does
  * handle the moment when the ball is shot
  */
 public class Cannon extends DynamicSprite {
-    final public Sound fire = Gdx.audio.newSound(Gdx.files.internal("sound/fire.mp3")); //sound made when the left
+    final public Sound fire = Gdx.audio.newSound(Gdx.files.internal("sounds/fire.mp3")); //sound made when the left
     // button's pressed
-    final public Texture imageFired = new Texture(Gdx.files.internal("image/cannon.png"));
+    final public Texture imageFired = new Texture(Gdx.files.internal("images/cannon.png"));
     public Texture imageBall;
     boolean isFired = false;
 

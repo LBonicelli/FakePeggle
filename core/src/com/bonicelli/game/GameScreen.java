@@ -23,12 +23,11 @@ import com.bonicelli.game.sceneUtilities.GameMap;
 import com.bonicelli.game.sceneUtilities.ScoreBoard;
 
 /**
- * GameScreen
  * the game's single screen, where everything that happens is displayed
  */
 public class GameScreen implements Screen {
     final FakePeggle game;
-    final public Music backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("sound/backgroundMusic.mp3"));
+    final public Music backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/backgroundMusic.mp3"));
     public OrthographicCamera camera;
     public TiledMap tiledMap;
     public OrthogonalTiledMapRenderer tiledMapRenderer;
@@ -61,8 +60,8 @@ public class GameScreen implements Screen {
         gameMap = new GameMap(objectLayer, physicsManager, camera);
         scoreBoard = new ScoreBoard();
 
-        cannon = new Cannon(new Texture(Gdx.files.internal("image/cannonBall.png")), camera);
-        ball = new Ball(new Texture(Gdx.files.internal("image/ballSprite.png")), cannon);
+        cannon = new Cannon(new Texture(Gdx.files.internal("images/cannonBall.png")), camera);
+        ball = new Ball(new Texture(Gdx.files.internal("images/ballSprite.png")), cannon);
         basket = new Basket();
         gameMap.upperCircle.setCenter(cannon.getCircle().x, cannon.getCircle().y);
 

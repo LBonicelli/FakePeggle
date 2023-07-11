@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * DynamicSprite
  * represents generically a moving sprite in the map
  */
 public abstract class DynamicSprite extends Sprite {

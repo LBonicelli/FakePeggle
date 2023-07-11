@@ -9,13 +9,12 @@ import com.bonicelli.game.sceneUtilities.ScoreBoard;
 import com.bonicelli.game.peg.Peg;
 
 /**
- * Collision Manager
  * get trace of every collision in the game map between two bodies
  * handle the contact with sound and texture
  * a contact could be only between the active game ball
  */
 public class CollisionManager implements ContactListener {
-    final public Sound boing = Gdx.audio.newSound(Gdx.files.internal("sound/boing.mp3"));
+    final public Sound boing = Gdx.audio.newSound(Gdx.files.internal("sounds/boing.mp3"));
     public GameMap gameMap;
     public ScoreBoard scoreBoard;
 

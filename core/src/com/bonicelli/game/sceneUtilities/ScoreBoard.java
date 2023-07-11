@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 /**
- * ScoreBoard
  * scoreboard in the top left that keeps track of the remaining ball and hit orange pegs
  * moreover checks if the player has won or lost
  */
@@ -19,8 +18,8 @@ public class ScoreBoard {
     public BitmapFont remainingBall;
     public BitmapFont orangeHit;
     public BitmapFont endFont;
-    public Sprite ballImage = new Sprite(new Texture(Gdx.files.internal("image/ballSprite.png")));
-    public Sprite orangeImage = new Sprite(new Texture(Gdx.files.internal("image/orangeBall.png")));
+    public Sprite ballImage = new Sprite(new Texture(Gdx.files.internal("images/ballSprite.png")));
+    public Sprite orangeImage = new Sprite(new Texture(Gdx.files.internal("images/orangeBall.png")));
     public boolean isWin = false;
     public boolean isLose = false;
     public boolean isPlayed = true; //for the final soundtrack
@@ -61,7 +60,7 @@ public class ScoreBoard {
     public void drawResult(Batch batch, Camera camera) {
         endFont = new BitmapFont();
         String resultString = (isWin) ? "You Won!" : "You Lost";
-        String soundString = (isWin) ? "sound/victorySound.mp3" : "sound/defeatSound.mp3";
+        String soundString = (isWin) ? "sounds/victorySound.mp3" : "sounds/defeatSound.mp3";
         playSound(soundString);
         endFont.getData().setScale(4, 4);
         endFont.draw(batch, resultString, camera.viewportWidth / 2f - 120, camera.viewportHeight / 2f + 50);

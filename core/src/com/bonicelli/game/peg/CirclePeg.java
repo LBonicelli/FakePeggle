@@ -8,12 +8,11 @@ import com.bonicelli.game.physics.CollisionCategories;
 import com.bonicelli.game.physics.PhysicsManager;
 
 /**
- * CirclePeg
  * static sprite which represent a circle peg
  */
 public class CirclePeg extends Peg {
-    final public Texture lightBlueBall = new Texture(Gdx.files.internal("image/lightBlueBall.png"));
-    final public Texture lightOrangeBall = new Texture(Gdx.files.internal("image/lightOrangeBall.png"));
+    final public Texture lightBlueBall = new Texture(Gdx.files.internal("images/lightBlueBall.png"));
+    final public Texture lightOrangeBall = new Texture(Gdx.files.internal("images/lightOrangeBall.png"));
 
     public CirclePeg(Texture ballImage, Vector2 position, float rotation, PhysicsManager physicsManager) {
         super(ballImage, position, rotation);
