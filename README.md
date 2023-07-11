@@ -26,7 +26,7 @@
 
 ### How the real Peggle looks like ###
 ![realPeggle](https://github.com/LBonicelli/FakePeggle/blob/master/assets/realPeggle.jpg?raw=true)
-### How my FakePeggle looks like ###
+### How FakePeggle looks like ###
 ![gameScreenshot](https://github.com/LBonicelli/FakePeggle/blob/master/assets/gameScreenshot.png?raw=true)
 
 ## Features
